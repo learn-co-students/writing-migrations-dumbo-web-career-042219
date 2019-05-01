@@ -9,6 +9,11 @@ ENV["SCHOOL_ENV"] ||= "development"
 DBRegistry[ENV["SCHOOL_ENV"]].connect!
 DB = ActiveRecord::Base.connection
 
+ActiveRecord::Base.establish_connection(
+:adapter => "sqlite3",
+:database => "db/student.sqlite"
+)
+
 if ENV["SCHOOL_ENV"] == "test"
   ActiveRecord::Migration.verbose = false
 end
